@@ -1,0 +1,28 @@
+﻿@model Subject
+@{
+    ViewData["Title"] = "Subject Details";
+}
+
+<div class="page-header mb-4">
+    <a asp-action="Index" class="text-decoration-none small"><i class="bi bi-arrow-left"></i> Back to list</a>
+</div>
+
+<div class="card app-card">
+    <div class="card-body p-4 p-md-5">
+        <span class="badge code-badge mb-2">@Model.SubjectCode</span>
+        <h1 class="h4 mb-4">@Model.SubjectName</h1>
+
+        <dl class="row mb-0 gy-3">
+            <dt class="col-sm-3 detail-label">Units</dt>
+            <dd class="col-sm-9">@Model.Units</dd>
+
+            <dt class="col-sm-3 detail-label">Assigned Instructor</dt>
+            <dd class="col-sm-9">@Model.InstructorName</dd>
+        </dl>
+
+        <div class="mt-4 d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.SubjectId" class="btn btn-primary"><i class="bi bi-pencil me-1"></i>Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

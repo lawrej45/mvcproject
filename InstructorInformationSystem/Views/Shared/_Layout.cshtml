@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Instructor Information System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" /></noscript>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="app-body">
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var nameParts = (User.Identity?.Name ?? string.Empty).Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var displayName = string.Join(" ", System.Array.FindAll(nameParts, part => !part.Contains('@')));
+        if (string.IsNullOrWhiteSpace(displayName))
+            displayName = "User";
+    }
+
+    <nav class="navbar navbar-expand-lg navbar-dark app-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" asp-controller="Account" asp-action="Dashboard">
+                <i class="bi bi-mortarboard-fill me-2"></i>Instructor Information System
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <ul class="navbar-nav me-auto gap-1">
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Account" ? "active" : "")" asp-controller="Account" asp-action="Dashboard">
+                                <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Instructor" ? "active" : "")" asp-controller="Instructor" asp-action="Index">
+                                <i class="bi bi-people me-1"></i>Instructors
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Subject" ? "active" : "")" asp-controller="Subject" asp-action="Index">
+                                <i class="bi bi-journal-bookmark me-1"></i>Subjects
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="text-white-50 fs-6">Hi, <strong class="text-white">@displayName</strong></span>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="m-0">
+                            <button type="submit" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right me-1"></i>Logout
+                            </button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <div class="ms-auto d-flex gap-2">
+                        <a class="btn btn-sm btn-outline-light" asp-controller="Account" asp-action="Login">Login</a>
+                        <a class="btn btn-sm btn-light" asp-controller="Account" asp-action="Register">Register</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4 app-main fade-in">
+        @if (TempData["Message"] is string message)
+        {
+            <div class="alert alert-success alert-dismissible fade show shadow-sm auto-dismiss" role="alert">
+                <i class="bi bi-check-circle me-2"></i>@message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @RenderBody()
+    </main>
+
+    <footer class="app-footer text-center py-3 small text-muted">
+        &copy; @DateTime.Now.Year Instructor Information System
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

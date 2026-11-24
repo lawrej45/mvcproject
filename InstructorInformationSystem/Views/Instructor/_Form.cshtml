@@ -1,0 +1,74 @@
+@model Instructor
+
+<div class="row g-3">
+    <div class="col-12">
+        <label asp-for="InstructorId" class="form-label fw-semibold"></label>
+        <input asp-for="InstructorId" class="form-control" inputmode="numeric" autocomplete="off" />
+        <span asp-validation-for="InstructorId" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="FirstName" class="form-label fw-semibold"></label>
+        <input asp-for="FirstName" class="form-control" autocomplete="given-name" />
+        <span asp-validation-for="FirstName" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="LastName" class="form-label fw-semibold"></label>
+        <input asp-for="LastName" class="form-control" autocomplete="family-name" />
+        <span asp-validation-for="LastName" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Age" class="form-label fw-semibold"></label>
+        <input asp-for="Age" class="form-control" type="number" min="20" max="80" />
+        <span asp-validation-for="Age" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Address" class="form-label fw-semibold"></label>
+        <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Address" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Designation" class="form-label fw-semibold"></label>
+        <input asp-for="Designation" class="form-control" />
+        <span asp-validation-for="Designation" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Gender" class="form-label fw-semibold"></label>
+        <select asp-for="Gender" class="form-select">
+            <option value="">-- Select --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="ContactNumber" class="form-label fw-semibold"></label>
+        <input asp-for="ContactNumber" class="form-control" type="tel" autocomplete="tel" />
+        <span asp-validation-for="ContactNumber" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Majorship" class="form-label fw-semibold"></label>
+        <input asp-for="Majorship" class="form-control" />
+        <span asp-validation-for="Majorship" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="BachelorDegree" class="form-label fw-semibold"></label>
+        <input asp-for="BachelorDegree" class="form-control" />
+        <span asp-validation-for="BachelorDegree" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="EmailAddress" class="form-label fw-semibold"></label>
+        <input asp-for="EmailAddress" class="form-control" type="email" autocomplete="email" />
+        <span asp-validation-for="EmailAddress" class="text-danger small"></span>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model Instructor
+@{
+    ViewData["Title"] = "Instructor Details";
+    var instructorName = string.IsNullOrWhiteSpace(Model.FullName) ? "Instructor" : Model.FullName;
+}
+
+<div class="page-header d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <span class="detail-label">INSTRUCTOR RECORD</span>
+        <h1 class="h3 mb-1">Instructor Profile</h1>
+        <p class="text-muted mb-0">Personal, contact, and professional information.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary"><i class="bi bi-pencil me-1"></i>Edit</a>
+        <a asp-action="Index" class="btn btn-outline-secondary">Back to Instructors</a>
+    </div>
+</div>
+
+<div class="card app-card">
+    <div class="card-body p-0">
+        <table class="table instructor-detail-table mb-0">
+            <tbody>
+                <tr><th scope="row">Instructor ID</th><td>@(Model.InstructorId is null || string.IsNullOrWhiteSpace(Model.InstructorId.ToString()) ? "Not provided" : Model.InstructorId.ToString())</td></tr>
+                <tr><th scope="row">Full Name</th><td>@(Model.FullName is null || string.IsNullOrWhiteSpace(Model.FullName.ToString()) ? "Not provided" : Model.FullName.ToString())</td></tr>
+                <tr><th scope="row">Age</th><td>@Model.Age</td></tr>
+                <tr><th scope="row">Address</th><td>@(Model.Address is null || string.IsNullOrWhiteSpace(Model.Address.ToString()) ? "Not provided" : Model.Address.ToString())</td></tr>
+                <tr><th scope="row">Designation</th><td>@(Model.Designation is null || string.IsNullOrWhiteSpace(Model.Designation.ToString()) ? "Not provided" : Model.Designation.ToString())</td></tr>
+                <tr><th scope="row">Gender</th><td>@(Model.Gender is null || string.IsNullOrWhiteSpace(Model.Gender.ToString()) ? "Not provided" : Model.Gender.ToString())</td></tr>
+                <tr><th scope="row">Contact Number</th><td>@(Model.ContactNumber is null || string.IsNullOrWhiteSpace(Model.ContactNumber.ToString()) ? "Not provided" : Model.ContactNumber.ToString())</td></tr>
+                <tr><th scope="row">Majorship</th><td>@(Model.Majorship is null || string.IsNullOrWhiteSpace(Model.Majorship.ToString()) ? "Not provided" : Model.Majorship.ToString())</td></tr>
+                <tr><th scope="row">Bachelor Degree</th><td>@(Model.BachelorDegree is null || string.IsNullOrWhiteSpace(Model.BachelorDegree.ToString()) ? "Not provided" : Model.BachelorDegree.ToString())</td></tr>
+                <tr><th scope="row">E-mail Address</th><td>@if (string.IsNullOrWhiteSpace(Model.EmailAddress)) { <text>Not provided</text> } else { <a href="mailto:@Model.EmailAddress">@Model.EmailAddress</a> }</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
